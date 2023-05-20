@@ -27,7 +27,7 @@ class ClasseController extends Controller
     public function create()
     {
         $classes = Classe::all();
-        return view('layoutEtudiant.createEtudiant',compact("classes"));    }
+        return view('layoutClasse.createClasse',compact("classes"));    }
 
     /**
      * Store a newly created resource in storage.
