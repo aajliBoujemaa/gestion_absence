@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsenceController;
+use App\Http\Controllers\ClasseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnseignantController;
@@ -73,10 +74,19 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', 'AdminController@index')->name('admin.index');
 });
 
-Route::middleware(['auth', 'role:Étudiant'])->group(function () {
+Route::middleware(['auth', 'role:Etudiant'])->group(function () {
     Route::get('/profil', 'StudentController@profile')->name('student.profile');
 });
 
 Route::middleware(['auth', 'role:Enseignant'])->group(function () {
     Route::get('/cours', 'TeacherController@courses')->name('teacher.courses');
 });
+
+//Classe
+Route::get("/classe",[ClasseController::class,"index"])->name("classe");
+
+Route::get("/createClasse",[ClasseController::class,"create"])->name("classe.create");
+Route::post("/ajouterClasse",[ClasseController::class,"store"])->name("ajouterClasse");
+Route::get("/editClasse/{classe}",[ClasseController::class,"edite"])->name("classe.edit");
+Route::put("/updateClasse/{classe}",[ClasseController::class,"updat"])->name("updateClasse");
+Route::delete("/supprimerClasse/{classe}",[ClasseController::class,"delete"])->name("supprimerClasse");
